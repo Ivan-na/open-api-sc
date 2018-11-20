@@ -1,5 +1,6 @@
 package com.fenbeitong.open.api.edge.sass.approve.api;
 
+import com.fenbeitong.open.api.edge.sass.approve.client.BizApproveClient;
 import com.fenbeitong.open.api.edge.sass.approve.entity.ApproveEntity;
 import com.fenbeitong.open.api.edge.sass.approve.vo.ApproveParam;
 import com.fenbeitong.open.api.support.commons.base.BaseApi;
@@ -33,6 +34,9 @@ import static java.util.concurrent.Executors.*;
 @Api("Approve Edge Service")
 @Slf4j
 public class ApproveApi extends BaseApi {
+
+    private BizApproveClient bizApproveClient;
+
 
     public ResponseData createApprove(@RequestBody BizCommonParams<ApproveParam> bizCommonParams){
         log.info(bizCommonParams.getData().getTripList().get(0).getArrivalCityId());
