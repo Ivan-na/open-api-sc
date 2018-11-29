@@ -12,7 +12,7 @@
   <artifactId>edge.saas</artifactId>
 
   <properties>
-    <commons.version>1.0-SNAPSHOT</commons.version>
+    <support.version>1.0-SNAPSHOT</support.version>
     <springfox-swagger.version>2.7.0</springfox-swagger.version>
   </properties>
   <dependencies>
@@ -25,22 +25,6 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-sleuth</artifactId>
-    </dependency>
-    <!-- Spring Boot -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jetty</artifactId>
     </dependency>
 
     <dependency>
@@ -63,22 +47,9 @@
     <!-- Common Deps -->
     <dependency>
       <groupId>com.fenbeitong</groupId>
-      <artifactId>support-commons</artifactId>
-      <version>${commons.version}</version>
+      <artifactId>support-web</artifactId>
+      <version>${support.version}</version>
     </dependency>
-
-    <!-- Swagger 2-->
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>${springfox-swagger.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>${springfox-swagger.version}</version>
-    </dependency>
-
   </dependencies>
 
   <build>

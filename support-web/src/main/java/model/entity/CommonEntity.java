@@ -1,4 +1,4 @@
-package com.fenbeitong.open.api.support.commons.model.entity;
+package model.entity;
 
 /**
  * CommonEntity

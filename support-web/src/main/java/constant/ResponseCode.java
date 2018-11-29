@@ -1,4 +1,4 @@
-package com.fenbeitong.open.api.support.commons.constant;
+package constant;
 
 /**
  * Enum for Response Code

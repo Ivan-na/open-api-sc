@@ -4,9 +4,9 @@ package com.fenbeitong.open.api.service.auth.api;
 import com.fenbeitong.open.api.service.auth.entity.OpenAuthInfo;
 import com.fenbeitong.open.api.service.auth.service.IOpenAuthInfoService;
 import com.fenbeitong.open.api.support.commons.base.BaseApi;
-import com.fenbeitong.open.api.support.commons.model.dto.ResponseData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import model.dto.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ import java.util.List;
 public class OpenAuthInfoController extends BaseApi {
 
     final
-    IOpenAuthInfoService openAuthInfoService;
+    private IOpenAuthInfoService openAuthInfoService;
 
     @Autowired
     public OpenAuthInfoController(IOpenAuthInfoService openAuthInfoService) {

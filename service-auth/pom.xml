@@ -12,7 +12,7 @@
   <artifactId>service-auth</artifactId>
 
   <properties>
-    <commons.version>1.0-SNAPSHOT</commons.version>
+    <support.version>1.0-SNAPSHOT</support.version>
     <springfox-swagger.version>2.7.0</springfox-swagger.version>
     <mybatis-plus.version>3.0.5</mybatis-plus.version>
     <druid.version>1.1.10</druid.version>
@@ -82,8 +82,8 @@
     <!-- Common Deps -->
     <dependency>
       <groupId>com.fenbeitong</groupId>
-      <artifactId>support-commons</artifactId>
-      <version>${commons.version}</version>
+      <artifactId>support-web</artifactId>
+      <version>${support.version}</version>
     </dependency>
 
     <!-- Swagger 2-->

@@ -2,8 +2,8 @@ package com.fenbeitong.open.api.edge.sass.approve.client;
 
 import com.fenbeitong.open.api.edge.sass.approve.entity.ApproveEntity;
 import com.fenbeitong.open.api.edge.sass.approve.vo.ApproveParam;
-import com.fenbeitong.open.api.support.commons.model.entity.backend.BizCommonEntity;
-import com.fenbeitong.open.api.support.commons.model.vo.backend.BizCommonParams;
+import model.entity.backend.BizEntity;
+import model.vo.backend.BizParams;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,5 +18,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface BizApproveClient {
 
     @PostMapping("/create")
-    public BizCommonEntity<ApproveEntity> createApprove(@RequestBody BizCommonParams<ApproveParam> bizCommonParams);
+    public BizEntity<ApproveEntity> createApprove(@RequestBody BizParams<ApproveParam> bizParams);
 }

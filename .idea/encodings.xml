@@ -8,5 +8,6 @@
     <file url="file://$PROJECT_DIR$/support-commons" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/support-discovery" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/support-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/support-web" charset="UTF-8" />
   </component>
 </project>

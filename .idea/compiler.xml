@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -12,6 +13,7 @@
         <module name="support-commons" />
         <module name="support-discovery" />
         <module name="support-gateway" />
+        <module name="support-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />
@@ -25,6 +27,7 @@
       <module name="support-commons" options="-parameters" />
       <module name="support-discovery" options="-parameters" />
       <module name="support-gateway" options="-parameters" />
+      <module name="support-web" options="-parameters" />
     </option>
   </component>
 </project>
