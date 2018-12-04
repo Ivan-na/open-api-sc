@@ -18,5 +18,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface BizApproveClient {
 
     @PostMapping("/create")
-    public BizEntity<ApproveEntity> createApprove(@RequestBody BizParams<ApproveParam> bizParams);
+    BizEntity<ApproveEntity> createApprove(@RequestBody BizParams<ApproveParam> bizParams);
 }
