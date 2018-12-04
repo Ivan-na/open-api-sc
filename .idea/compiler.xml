@@ -10,6 +10,8 @@
         <module name="edge-saas" />
         <module name="example-boot-project" />
         <module name="service-auth" />
+        <module name="service-JWT" />
+        <module name="service-usercenter" />
         <module name="support-commons" />
         <module name="support-discovery" />
         <module name="support-gateway" />
@@ -23,7 +25,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="edge-saas" options="-parameters" />
       <module name="example-boot-project" options="-parameters" />
+      <module name="service-JWT" options="-parameters" />
       <module name="service-auth" options="-parameters" />
+      <module name="service-usercenter" options="-parameters" />
       <module name="support-commons" options="-parameters" />
       <module name="support-discovery" options="-parameters" />
       <module name="support-gateway" options="-parameters" />

@@ -1,0 +1,33 @@
+## Mybatis
+mybatis-plus:
+  global-config:
+    refresh: true
+    sql-parser-cache: false
+  configuration:
+    cache-enabled: false
+## log
+logging:
+  config: service-JWT/src/main/resources/log4j-dev.properties
+## JWT
+JWT:
+  iss: api
+  sub: token
+  exp: 10
+  secret: Fuck!xxxxxxxxxx
+## JDBC CONFIG
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.16.0.7:3306/stereo-dev?useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true
+    username:
+    password:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: OpenAPIHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1

@@ -2,7 +2,7 @@ package caller;
 
 import caller.handler.CustomErrorHandler;
 import caller.handler.CustomLogHandler;
-import com.fenbeitong.open.api.support.commons.constants.SysConstants;
+import com.fenbeitong.open.api.service.jwt.support.commons.constants.SysConstants;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -28,7 +28,7 @@ public class RestTemplateUtil {
      * @author Created by ivan on 下午3:49 18-11-22.
      * <p>//TODO get
      **/
-    static <T> T get(String url, Class<T> returnClassName, Map<String, String> parameters) {
+    public static <T> T get(String url, Class<T> returnClassName, Map<String, String> parameters) {
         RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
         if (null == parameters || parameters.isEmpty()) {
             return restTemplate.getForObject(url, returnClassName);

@@ -3,7 +3,7 @@ package com.fenbeitong.open.api.service.auth.api;
 
 import com.fenbeitong.open.api.service.auth.entity.OpenAuthInfo;
 import com.fenbeitong.open.api.service.auth.service.IOpenAuthInfoService;
-import com.fenbeitong.open.api.support.commons.base.BaseApi;
+import com.fenbeitong.open.api.service.jwt.support.commons.base.BaseApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import model.dto.ResponseData;

@@ -17,6 +17,8 @@
     <module>service-auth</module>
     <module>edge-saas</module>
     <module>support-web</module>
+    <module>service-usercenter</module>
+    <module>service-JWT</module>
   </modules>
 
   <!-- Spring Boot -->
@@ -85,15 +87,33 @@
 
   <!-- General Build Plugins -->
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/xml/*.xml</include>
+        </includes>
+      </resource>
+
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>*.xml</include>
+          <include>*/*.xml</include>
+          <include>*.yml</include>
+          <include>*.wsdl</include>
+          <include>*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
     </plugins>
-
   </build>
 </project>
