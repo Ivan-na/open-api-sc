@@ -6,16 +6,16 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * JWTServiceBootstrap
- * <p> TODO
+ *
+ * <p>JWT 服务
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-12-3 - 下午2:44.
- **/
+ * @version 1.0 Created by ivan on 18-12-3 - 下午2:44.
+ */
 @SpringBootApplication
 @EnableEurekaClient
-public class JWTServiceBootstrap {
-    public static void main(String[] args) {
-        SpringApplication.run(JWTServiceBootstrap.class, args);
-    }
+public class JwtServiceBootstrap {
+  public static void main(String[] args) {
+    SpringApplication.run(JwtServiceBootstrap.class, args);
+  }
 }

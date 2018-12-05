@@ -6,19 +6,17 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * GatewayBootStrap
- * <p> TODO
+ *
+ * <p>网关服务
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-19 - 下午2:23.
- **/
+ * @version 1.0 Created by ivan on 18-11-19 - 下午2:23.
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 public class GatewayBootStrap {
 
-    public static void main(String[] args) {
-
-        SpringApplication.run(GatewayBootStrap.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(GatewayBootStrap.class, args);
+  }
 }

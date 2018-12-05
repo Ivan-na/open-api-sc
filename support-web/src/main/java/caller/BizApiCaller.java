@@ -20,12 +20,12 @@ import java.util.Map;
 
 /**
  * BizApiCaller
- * <p>BIZ API CALLER</p>
+ *
+ * <p>BIZ API CALLER
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-29 - 下午4:21.
- **/
+ * @version 1.0 Created by ivan on 18-11-29 - 下午4:21.
+ */
 public class BizApiCaller<T, R> {
     private static final Logger LOGGER = LoggerFactory.getLogger(BizApiCaller.class);
     private FieldNamingPolicy fieldNamingPolicy = FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
@@ -39,9 +39,11 @@ public class BizApiCaller<T, R> {
      * @param parseParam : 地址中站位符替换
      * @return model.entity.backend.BizEntity
      * @author Created by ivan on 下午5:59 18-11-29.
-     * <p>Get Request</p>
-     **/
-    public BizEntity getRequest(String url, BizParams<T> param, BizEntity<R> entity, Map<String, String> parseParam) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>Get Request
+     */
+    public BizEntity getRequest(
+            String url, BizParams<T> param, BizEntity<R> entity, Map<String, String> parseParam)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(getFieldNamingPolicy()).create();
         return gson.fromJson(this.getRequest(url, param, parseParam), entity.getClass());
     }
@@ -53,9 +55,11 @@ public class BizApiCaller<T, R> {
      * @param parseParam : 地址中站位符替换
      * @return model.entity.backend.BizEntityList
      * @author Created by ivan on 下午6:43 18-11-29.
-     * <p>query list request</p>
-     **/
-    public BizEntityList queryListRequest(String url, BizParams<T> param, BizEntityList<R> entityList, Map<String, String> parseParam) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>query list request
+     */
+    public BizEntityList queryListRequest(
+            String url, BizParams<T> param, BizEntityList<R> entityList, Map<String, String> parseParam)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(getFieldNamingPolicy()).create();
         return gson.fromJson(this.getRequest(url, param, parseParam), entityList.getClass());
     }
@@ -66,9 +70,10 @@ public class BizApiCaller<T, R> {
      * @param parseParam : 地址中站位符替换
      * @return java.lang.String
      * @author Created by ivan on 下午6:45 18-11-29.
-     * <p>set get request</p>
-     **/
-    private String getRequest(String url, BizParams<T> param, Map<String, String> parseParam) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>set get request
+     */
+    private String getRequest(String url, BizParams<T> param, Map<String, String> parseParam)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         // covert object to map
         Map<String, String> urlParameters = Maps.newHashMapWithExpectedSize(SysConstants.INIT_MAP_SIZE);
         urlParameters = ValueHelper.transBean2Map(param, urlParameters, ignores);
@@ -85,9 +90,11 @@ public class BizApiCaller<T, R> {
      * @param headerMap : header参数
      * @return model.entity.backend.BizEntity
      * @author Created by ivan on 下午8:02 18-11-29.
-     * <p>基本 带HEADER，用JSON</p>
-     **/
-    public BizEntity postRequest(String url, BizParams<T> params, BizEntity<R> entity, Map<String, String> headerMap) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>基本 带HEADER，用JSON
+     */
+    public BizEntity postRequest(
+            String url, BizParams<T> params, BizEntity<R> entity, Map<String, String> headerMap)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         return postRequest(url, params, entity, headerMap, true);
     }
 
@@ -98,9 +105,11 @@ public class BizApiCaller<T, R> {
      * @param jsonFlag : 是否使用json数据
      * @return model.entity.backend.BizEntity
      * @author Created by ivan on 下午8:02 18-11-29.
-     * <p>不带header，选择是否用json</p>
-     **/
-    public BizEntity postRequest(String url, BizParams<T> params, BizEntity<R> entity, boolean jsonFlag) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>不带header，选择是否用json
+     */
+    public BizEntity postRequest(
+            String url, BizParams<T> params, BizEntity<R> entity, boolean jsonFlag)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         return postRequest(url, params, entity, null, jsonFlag, null);
     }
 
@@ -112,12 +121,17 @@ public class BizApiCaller<T, R> {
      * @param jsonFlag  : 是否使用json数据
      * @return model.entity.backend.BizEntity
      * @author Created by ivan on 下午8:02 18-11-29.
-     * <p>可带header，选用json，不带额外参数</p>
-     **/
-    public BizEntity postRequest(String url, BizParams<T> params, BizEntity<R> entity, Map<String, String> headerMap, boolean jsonFlag) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>可带header，选用json，不带额外参数
+     */
+    public BizEntity postRequest(
+            String url,
+            BizParams<T> params,
+            BizEntity<R> entity,
+            Map<String, String> headerMap,
+            boolean jsonFlag)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         return postRequest(url, params, entity, headerMap, jsonFlag, null);
     }
-
 
     /**
      * @param url       : 请求地址
@@ -128,9 +142,16 @@ public class BizApiCaller<T, R> {
      * @param extraMap  : 使用form格式，允许对象外参数
      * @return model.entity.backend.BizEntity
      * @author Created by ivan on 下午7:58 18-11-29.
-     * <p>可配置header，是否用json，是否有额外参数</p>
-     **/
-    public BizEntity postRequest(String url, BizParams<T> params, BizEntity<R> entity, Map<String, String> headerMap, boolean jsonFlag, Map<String, String> extraMap) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+     * <p>可配置header，是否用json，是否有额外参数
+     */
+    public BizEntity postRequest(
+            String url,
+            BizParams<T> params,
+            BizEntity<R> entity,
+            Map<String, String> headerMap,
+            boolean jsonFlag,
+            Map<String, String> extraMap)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(getFieldNamingPolicy()).create();
         // call
         String resultString;
@@ -138,8 +159,11 @@ public class BizApiCaller<T, R> {
             resultString = RestTemplateUtil.post(url, String.class, headerMap, gson.toJson(params));
         } else {
             // covert data object
-            LinkedMultiValueMap<String, String> inputParameter = new LinkedMultiValueMap<String, String>(SysConstants.INIT_MAP_SIZE);
-            Map<String, String> valueMap = ValueHelper.transBean2Map(params, Maps.newHashMapWithExpectedSize(SysConstants.INIT_MAP_SIZE), ignores);
+            LinkedMultiValueMap<String, String> inputParameter =
+                    new LinkedMultiValueMap<>(SysConstants.INIT_MAP_SIZE);
+            Map<String, String> valueMap =
+                    ValueHelper.transBean2Map(
+                            params, Maps.newHashMapWithExpectedSize(SysConstants.INIT_MAP_SIZE), ignores);
             inputParameter.setAll(valueMap);
             if (null != extraMap && !extraMap.isEmpty()) {
                 inputParameter.setAll(extraMap);

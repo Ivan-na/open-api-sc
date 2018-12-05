@@ -2,19 +2,19 @@ package model.dto;
 
 /**
  * ResponseData
- * <p> TODO
+ *
+ * <p>API层响应数据封装
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-19 - 上午11:35.
- **/
+ * @version 1.0 Created by ivan on 18-11-19 - 上午11:35.
+ */
 public class ResponseData {
 
     private int responseCode = 200;
     private String responseMessage = "";
     private Object responseData;
 
-    // Constructors
+    /* Constructors */
     private ResponseData() {
     }
 
@@ -31,7 +31,7 @@ public class ResponseData {
         this.responseMessage = responseMessage;
     }
 
-    // Response Schema
+    /* Response Schema */
     public static ResponseData ok(Object responseData) {
         return new ResponseData(responseData);
     }
@@ -48,7 +48,7 @@ public class ResponseData {
         return new ResponseData(responseCode, responseMessage);
     }
 
-    // Getter & Setter
+    /* Getter & Setter */
     public int getResponseCode() {
         return responseCode;
     }

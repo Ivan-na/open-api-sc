@@ -13,12 +13,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * SwaggerConfig
- * <p> TODO
+ *
+ * <p>SWAGGER2 配置
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-19 - 下午5:05.
- **/
+ * @version 1.0 Created by ivan on 18-11-19 - 下午5:05.
+ */
 @SpringBootConfiguration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -27,7 +27,7 @@ public class SwaggerConfig {
      * @return springfox.documentation.spring.web.plugins.Docket
      * @author Created by ivan on 上午11:53 18-11-8.
      * <p>create Rest Api
-     **/
+     */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -42,7 +42,7 @@ public class SwaggerConfig {
      * @return springfox.documentation.service.ApiInfo
      * @author Created by ivan on 上午11:53 18-11-8.
      * <p>api common Info
-     **/
+     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("API with Swagger 2")

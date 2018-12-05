@@ -30,9 +30,7 @@ public class CodeGenerator {
      */
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
+        System.out.println(("请输入" + tip + "："));
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StringUtils.isNotEmpty(ipt)) {
@@ -43,9 +41,9 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
-        String project_name = "/service-auth/src/main/java/";
-        String package_root = "com.fenbeitong.open.api.service";
-        String mapper_path = "/service-auth/src/main/java/com/fenbeitong/open/api/service/";
+        String projectName = "/service-auth/src/main/java/";
+        String packageRoot = "com.fenbeitong.open.api.service";
+        String mapperPath = "/service-auth/src/main/java/com/fenbeitong/open/api/service/";
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -53,7 +51,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
-        gc.setOutputDir(projectPath + project_name);
+        gc.setOutputDir(projectPath + projectName);
         gc.setAuthor("ivan");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
@@ -61,7 +59,6 @@ public class CodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/stereo-dev?useUnicode=true&useSSL=false&characterEncoding=utf8");
-        // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("ivanna83");
@@ -70,7 +67,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
-        pc.setParent(package_root);
+        pc.setParent(packageRoot);
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -85,7 +82,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + mapper_path + pc.getModuleName()
+                return projectPath + mapperPath + pc.getModuleName()
                         + "/mapper/xml/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });

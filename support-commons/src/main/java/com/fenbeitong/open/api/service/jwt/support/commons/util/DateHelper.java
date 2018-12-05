@@ -9,47 +9,59 @@ import java.util.Date;
 
 /**
  * DateHelper
- * <p> TODO
+ *
+ * <p>日期帮助工具类
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-21 - 下午7:32.
- **/
+ * @version 1.0 Created by ivan on 18-11-21 - 下午7:32.
+ */
 public class DateHelper extends DateUtils {
     public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public static final String DATE_SDF        = "yyyy-MM-dd";
-    public static final String TIME_SDF        = "yyyy-MM-dd HH:mm";
-    public static final String YYYY            = "yyyy";
-    public static final String MM              = "MM";
-    public static final String DD              = "dd";
-    public static final String YYYYMMDD        = "yyyyMMdd";
-    public static final String YYYYMMDDHHMMSS  = "yyyyMMddHHmmss";
-    public static final String SHORT_TIME_SDF  = "HH:mm";
+    public static final String DATE_SDF = "yyyy-MM-dd";
+    public static final String TIME_SDF = "yyyy-MM-dd HH:mm";
+    public static final String YYYY = "yyyy";
+    public static final String MM = "MM";
+    public static final String DD = "dd";
+    public static final String YYYYMMDD = "yyyyMMdd";
+    public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
+    public static final String SHORT_TIME_SDF = "HH:mm";
     public static final String DATE_TIME_SLASH = "yyyy/MM/dd HH:mm:ss";
     public static final String DATE_TIME_SLASH_S = "yyyy/MM/dd";
-    public static final String DATE_TIME_DOT= "yyyy.MM.dd HH:mm:ss";
+    public static final String DATE_TIME_DOT = "yyyy.MM.dd HH:mm:ss";
     public static final String DATE_TIME_DOT_S = "yyyy.MM.dd";
-    public static final String DATE_SDF_WZ     = "yyyy年MM月dd日";
-    
-    private static String[] parsePatterns = {DATETIME_FORMAT,DATE_SDF,TIME_SDF,YYYY,MM,DD,YYYYMMDD,YYYYMMDDHHMMSS,
-            SHORT_TIME_SDF,DATE_TIME_SLASH,DATE_TIME_SLASH_S,DATE_TIME_DOT,DATE_TIME_DOT_S,DATE_SDF_WZ};
+    public static final String DATE_SDF_WZ = "yyyy年MM月dd日";
+
+    private static String[] parsePatterns = {
+            DATETIME_FORMAT,
+            DATE_SDF,
+            TIME_SDF,
+            YYYY,
+            MM,
+            DD,
+            YYYYMMDD,
+            YYYYMMDDHHMMSS,
+            SHORT_TIME_SDF,
+            DATE_TIME_SLASH,
+            DATE_TIME_SLASH_S,
+            DATE_TIME_DOT,
+            DATE_TIME_DOT_S,
+            DATE_SDF_WZ
+    };
 
     /**
-     * @author Created by ivan on 下午5:42 18-11-29.
-     * 得到当前日期字符串 格式（yyyy-MM-dd）.
-    
      * @return java.lang.String
-     **/
+     * @author Created by ivan on 下午5:42 18-11-29. 得到当前日期字符串 格式（yyyy-MM-dd）.
+     */
     public static String getDate() {
         return getDate(DATE_SDF);
     }
 
     /**
-     * @author Created by ivan on 下午5:42 18-11-29.
-     * 得到当前日期字符串 格式（yyyy-MM-dd） pattern可以为：DEFAULT_SHORT "HH:mm:ss" "E".
      * @param pattern :
      * @return java.lang.String
-     **/
+     * @author Created by ivan on 下午5:42 18-11-29. 得到当前日期字符串 格式（yyyy-MM-dd） pattern可以为：DEFAULT_SHORT
+     * "HH:mm:ss" "E".
+     */
     public static String getDate(String pattern) {
         return DateFormatUtils.format(new Date(), pattern);
     }
@@ -218,7 +230,8 @@ public class DateHelper extends DateUtils {
         long hour = timeMillis / (60 * 60 * 1000) - day * 24;
         long min = (timeMillis / (60 * 1000)) - day * 24 * 60 - hour * 60;
         long s = timeMillis / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60;
-        long sss = timeMillis - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - min * 60 * 1000 - s * 1000;
+        long sss =
+                timeMillis - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - min * 60 * 1000 - s * 1000;
         return (day > 0 ? day + "," : "") + hour + ":" + min + ":" + s + "." + sss;
     }
 
@@ -251,19 +264,28 @@ public class DateHelper extends DateUtils {
     public static boolean isInSameWeek(Calendar cal1, Calendar cal2) {
         Calendar monday = getDayOfWeek(cal1, 1);
         Calendar sunday = getDayOfWeek(cal1, 7);
-        sunday.set(sunday.get(Calendar.YEAR), sunday.get(Calendar.MONTH), sunday.get(Calendar.DATE), 23, 59, 59);
+        sunday.set(
+                sunday.get(Calendar.YEAR),
+                sunday.get(Calendar.MONTH),
+                sunday.get(Calendar.DATE),
+                23,
+                59,
+                59);
         return cal2.compareTo(monday) >= 0 && cal2.compareTo(sunday) <= 0;
     }
 
     /**
      * 获取指定日期所在周的任意一天.
+     *
      * <p>传入指定日期,及该星期指定的某一天.（星期一传1,星期天传7）
+     *
      * <p>例如：
-     * <p>获取本周的礼拜五
-     * <br/>
-     * <br/>Calendar cal = Calendar.getInstance();
-     * <br/>cal.setTime(new Date());
-     * <br/>getDayOfWeek(cal,5);
+     *
+     * <p>获取本周的礼拜五 <br>
+     * <br>
+     * Calendar cal = Calendar.getInstance(); <br>
+     * cal.setTime(new Date()); <br>
+     * getDayOfWeek(cal,5);
      *
      * <p>返回日期的准确时间为该天的零点,精确到毫秒,如 2014-10-01 00:00:00 000,
      *
@@ -289,9 +311,9 @@ public class DateHelper extends DateUtils {
     /**
      * 获取指定日期所在周的任意一天.
      *
-     * @param date
-     * @param num
-     * @return
+     * @param date 日期
+     * @param num  1-7
+     * @return 具体日期
      * @see #getDayOfWeek(Calendar c, int num)
      */
     public static Date getDayOfWeek(Date date, int num) {
@@ -303,7 +325,7 @@ public class DateHelper extends DateUtils {
     /**
      * 判断指定日期是否为周末（周六/周日）.
      *
-     * @param cal
+     * @param cal 指定日期
      * @return 若传入日期为周六/周日返回true,否则返回false
      */
     public static boolean isWeekEnd(Calendar cal) {
@@ -314,8 +336,8 @@ public class DateHelper extends DateUtils {
     /**
      * 判断两日期是否是同一天.
      *
-     * @param date1
-     * @param date2
+     * @param date1 日期一
+     * @param date2 日期二
      * @return 为同一天 返回true,否则返回false
      */
     public static boolean isSameDay(Date date1, Date date2) {
@@ -332,9 +354,9 @@ public class DateHelper extends DateUtils {
     /**
      * 判断两日期是否是同一天.
      *
-     * @param cal1
-     * @param cal2
-     * @return
+     * @param cal1 日期一
+     * @param cal2 日期二
+     * @return true/false
      */
     public static boolean isSameDay(Calendar cal1, Calendar cal2) {
         if (cal1 == null || cal2 == null) {
@@ -349,8 +371,8 @@ public class DateHelper extends DateUtils {
     /**
      * 获取两个日期的间隔天数.
      *
-     * @param startDate
-     * @param endDate
+     * @param startDate 开始日期
+     * @param endDate   结束日期
      * @return 两个日期的间隔天数
      */
     public static Integer getDaysBetween(Date startDate, Date endDate) {
@@ -368,6 +390,8 @@ public class DateHelper extends DateUtils {
         toCalendar.set(Calendar.SECOND, 0);
         toCalendar.set(Calendar.MILLISECOND, 0);
 
-        return (int) ((toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24));
+        return (int)
+                ((toCalendar.getTime().getTime() - fromCalendar.getTime().getTime())
+                        / (1000 * 60 * 60 * 24));
     }
 }

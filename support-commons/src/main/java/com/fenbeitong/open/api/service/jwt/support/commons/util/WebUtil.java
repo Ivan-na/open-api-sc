@@ -5,23 +5,23 @@ import java.util.Set;
 
 /**
  * WebUtil
- * <p> WEB常用工具类</p>
+ *
+ * <p>WEB常用工具类
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-29 - 下午6:52.
- **/
+ * @version 1.0 Created by ivan on 18-11-29 - 下午6:52.
+ */
 public class WebUtil {
     private static final String URL_PATH_QUERY_MARK = "?";
-    private static final String URL_PATH_QUERY_DELIMITER="&";
+    private static final String URL_PATH_QUERY_DELIMITER = "&";
 
     /**
      * @param url        : 原始请求路径
      * @param pathParams : 路径参数
      * @return java.lang.String : 合并后路径
      * @author Created by ivan on 下午5:11 18-11-29.
-     * <p>拼接请求路径参数</p>
-     **/
+     * <p>拼接请求路径参数
+     */
     public static String expandUrl(String url, Map<String, String> pathParams) {
         boolean isFirst = true;
         if (url.contains(URL_PATH_QUERY_MARK)) {

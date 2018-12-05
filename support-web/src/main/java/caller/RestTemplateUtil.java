@@ -13,12 +13,12 @@ import java.util.Set;
 
 /**
  * RestTemplateUtil
- * <p> TODO
+ *
+ * <p>RestTemplate Util
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-29 - 上午11:36.
- **/
+ * @version 1.0 Created by ivan on 18-11-29 - 上午11:36.
+ */
 public class RestTemplateUtil {
     /**
      * @param url             : 请求URL
@@ -26,10 +26,14 @@ public class RestTemplateUtil {
      * @param parameters      : 站位符替换参数map
      * @return T
      * @author Created by ivan on 下午3:49 18-11-22.
-     * <p>//TODO get
-     **/
+     * <p>Get 请求
+     */
     public static <T> T get(String url, Class<T> returnClassName, Map<String, String> parameters) {
-        RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
+        RestTemplate restTemplate =
+                new RestTemplateBuilder()
+                        .additionalInterceptors(new CustomLogHandler())
+                        .errorHandler(new CustomErrorHandler())
+                        .build();
         if (null == parameters || parameters.isEmpty()) {
             return restTemplate.getForObject(url, returnClassName);
         }
@@ -43,11 +47,18 @@ public class RestTemplateUtil {
      * @param formParameter   : 提交参数
      * @return T
      * @author Created by ivan on 下午3:49 18-11-22.
-     * <p>form提交，json返回的post请求</p>
-     **/
-    public static <T> T post(String url, Class<T> returnClassName, Map<String, String> inputHeader,
-                             LinkedMultiValueMap<String, String> formParameter) {
-        RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
+     * <p>form提交，json返回的post请求
+     */
+    public static <T> T post(
+            String url,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            LinkedMultiValueMap<String, String> formParameter) {
+        RestTemplate restTemplate =
+                new RestTemplateBuilder()
+                        .additionalInterceptors(new CustomLogHandler())
+                        .errorHandler(new CustomErrorHandler())
+                        .build();
         // 请求Header
         HttpHeaders httpHeaders = new HttpHeaders();
         // 添加Header
@@ -61,7 +72,8 @@ public class RestTemplateUtil {
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         httpHeaders.add(SysConstants.HTTP_HEADER_ACCEPT, MediaType.APPLICATION_JSON.toString());
         // 发送请求
-        HttpEntity<LinkedMultiValueMap<String, String>> formEntity = new HttpEntity<LinkedMultiValueMap<String, String>>(formParameter, httpHeaders);
+        HttpEntity<LinkedMultiValueMap<String, String>> formEntity =
+                new HttpEntity<>(formParameter, httpHeaders);
         return restTemplate.postForObject(url, formEntity, returnClassName);
     }
 
@@ -71,11 +83,15 @@ public class RestTemplateUtil {
      * @param inputHeader     :
      * @param jsonData        :
      * @author Created by ivan on 下午3:49 18-11-22.
-     * <p>json提交，json返回</p>
-     **/
-    static <T> T post(String url, Class<T> returnClassName, Map<String, String> inputHeader,
-                      String jsonData) {
-        RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
+     * <p>json提交，json返回
+     */
+    public static <T> T post(
+            String url, Class<T> returnClassName, Map<String, String> inputHeader, String jsonData) {
+        RestTemplate restTemplate =
+                new RestTemplateBuilder()
+                        .additionalInterceptors(new CustomLogHandler())
+                        .errorHandler(new CustomErrorHandler())
+                        .build();
         // 请求Header
         HttpHeaders httpHeaders = new HttpHeaders();
         // 拼接Header
@@ -89,7 +105,7 @@ public class RestTemplateUtil {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         httpHeaders.add(SysConstants.HTTP_HEADER_ACCEPT, MediaType.APPLICATION_JSON.toString());
         // 发送请求
-        HttpEntity<String> requestEntity = new HttpEntity<String>(jsonData, httpHeaders);
+        HttpEntity<String> requestEntity = new HttpEntity<>(jsonData, httpHeaders);
         return restTemplate.postForObject(url, requestEntity, returnClassName);
     }
 
@@ -101,11 +117,16 @@ public class RestTemplateUtil {
      * @param urlVariables    :
      * @return T
      * @author Created by ivan on 下午3:50 18-11-22.
-     * <p>//TODO put
-     **/
-    public static <T> T put(String url, Class<T> returnClassName, Map<String, String> inputHeader,
-                            LinkedMultiValueMap<String, String> inputParameter, Map<String, String> urlVariables) {
-        return exchange(url, HttpMethod.PUT, returnClassName, inputHeader, inputParameter, urlVariables);
+     * <p>Form数据PUT请求
+     */
+    public static <T> T put(
+            String url,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            LinkedMultiValueMap<String, String> inputParameter,
+            Map<String, String> urlVariables) {
+        return exchange(
+                url, HttpMethod.PUT, returnClassName, inputHeader, inputParameter, urlVariables);
     }
 
     /**
@@ -116,10 +137,14 @@ public class RestTemplateUtil {
      * @param urlVariables    :
      * @return T
      * @author Created by ivan on 下午3:50 18-11-22.
-     * <p>//TODO putJson
-     **/
-    public static <T> T put(String url, Class<T> returnClassName, Map<String, String> inputHeader,
-                            String jsonData, Map<String, String> urlVariables) {
+     * <p>JSON数据PUT请求
+     */
+    public static <T> T put(
+            String url,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            String jsonData,
+            Map<String, String> urlVariables) {
         return exchange(url, HttpMethod.PUT, returnClassName, inputHeader, jsonData, urlVariables);
     }
 
@@ -130,10 +155,14 @@ public class RestTemplateUtil {
      * @param urlVariables    :
      * @return T
      * @author Created by ivan on 下午3:50 18-11-22.
-     * <p>//TODO delete
-     **/
-    public static <T> T delete(String url, Class<T> returnClassName, Map<String, String> inputHeader,
-                               Map<String, String> urlVariables) {
+     * <p>路径参数DELETE
+     * <p>eg, http://abc.com/{id}
+     */
+    public static <T> T delete(
+            String url,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            Map<String, String> urlVariables) {
         return exchange(url, HttpMethod.DELETE, returnClassName, inputHeader, "", urlVariables);
     }
 
@@ -146,12 +175,20 @@ public class RestTemplateUtil {
      * @param urlVariables    :
      * @return T
      * @author Created by ivan on 下午3:50 18-11-22.
-     * <p>//TODO exchange
-     **/
-    public static <T> T exchange(String url, HttpMethod method, Class<T> returnClassName,
-                                 Map<String, String> inputHeader, LinkedMultiValueMap<String, String> inputParameter,
-                                 Map<String, String> urlVariables) {
-        RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
+     * <p>FORM数据EXCHANGE
+     */
+    public static <T> T exchange(
+            String url,
+            HttpMethod method,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            LinkedMultiValueMap<String, String> inputParameter,
+            Map<String, String> urlVariables) {
+        RestTemplate restTemplate =
+                new RestTemplateBuilder()
+                        .additionalInterceptors(new CustomLogHandler())
+                        .errorHandler(new CustomErrorHandler())
+                        .build();
         // 请求头
         HttpHeaders httpHeaders = new HttpHeaders();
         // 拼接Header
@@ -165,10 +202,10 @@ public class RestTemplateUtil {
         // 设置请求的类型及编码
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         // 发送请求
-        HttpEntity<LinkedMultiValueMap<String, String>> formEntity = new HttpEntity<LinkedMultiValueMap<String, String>>(
-                inputParameter, httpHeaders);
-        ResponseEntity<T> resultEntity = restTemplate.exchange(url, method, formEntity, returnClassName,
-                urlVariables);
+        HttpEntity<LinkedMultiValueMap<String, String>> formEntity =
+                new HttpEntity<>(inputParameter, httpHeaders);
+        ResponseEntity<T> resultEntity =
+                restTemplate.exchange(url, method, formEntity, returnClassName, urlVariables);
         return resultEntity.getBody();
     }
 
@@ -177,15 +214,24 @@ public class RestTemplateUtil {
      * @param method          :
      * @param returnClassName :
      * @param inputHeader     :
-     * @param jsonData      :
+     * @param jsonData        :
      * @param urlVariables    :
      * @return T
      * @author Created by ivan on 下午3:51 18-11-22.
-     * <p>//TODO exchangeJson
-     **/
-    public static <T> T exchange(String url, HttpMethod method, Class<T> returnClassName,
-                                 Map<String, String> inputHeader, String jsonData, Map<String, String> urlVariables) {
-        RestTemplate restTemplate = new RestTemplateBuilder().additionalInterceptors(new CustomLogHandler()).errorHandler(new CustomErrorHandler()).build();
+     * <p>JSON数据，exchange
+     */
+    public static <T> T exchange(
+            String url,
+            HttpMethod method,
+            Class<T> returnClassName,
+            Map<String, String> inputHeader,
+            String jsonData,
+            Map<String, String> urlVariables) {
+        RestTemplate restTemplate =
+                new RestTemplateBuilder()
+                        .additionalInterceptors(new CustomLogHandler())
+                        .errorHandler(new CustomErrorHandler())
+                        .build();
         // 请求头
         HttpHeaders httpHeaders = new HttpHeaders();
         // 拼接Header
@@ -199,9 +245,9 @@ public class RestTemplateUtil {
         // 设置请求的类型及编码
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         // 发送请求
-        HttpEntity<String> formEntity = new HttpEntity<String>(jsonData, httpHeaders);
-        ResponseEntity<T> resultEntity = restTemplate.exchange(url, method, formEntity, returnClassName,
-                urlVariables);
+        HttpEntity<String> formEntity = new HttpEntity<>(jsonData, httpHeaders);
+        ResponseEntity<T> resultEntity =
+                restTemplate.exchange(url, method, formEntity, returnClassName, urlVariables);
         return resultEntity.getBody();
     }
 }

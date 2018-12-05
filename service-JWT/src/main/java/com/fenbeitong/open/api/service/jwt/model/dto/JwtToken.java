@@ -4,17 +4,17 @@ import lombok.Data;
 
 /**
  * JWTToken
- * <p> TODO
+ *
+ * <p>JWT Token POJO类
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-12-3 - 下午3:52.
- **/
+ * @version 1.0 Created by ivan on 18-12-3 - 下午3:52.
+ */
 @Data
-public class JWTToken {
+public class JwtToken {
     private String token;
 
-    public JWTToken(String token) {
+    public JwtToken(String token) {
         this.token = token;
     }
 }

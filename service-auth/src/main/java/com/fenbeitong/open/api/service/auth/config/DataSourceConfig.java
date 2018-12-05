@@ -32,7 +32,6 @@ public class DataSourceConfig {
     public DataSource getDataSource()
             throws Exception {
         Properties properties = new Properties();
-        //properties.put("driverClassName", druidConfig.getDriverClassName());
         properties.put("url", druidConfig.getUrl());
         properties.put("username", druidConfig.getUsername());
         properties.put("password", druidConfig.getPassword());

@@ -6,12 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * SaasEdgeBootStrap
- * <p> TODO
+ *
+ * <p>TODO
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-19 - 下午7:50.
- **/
+ * @version 1.0 Created by ivan on 18-11-19 - 下午7:50.
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SaasEdgeBootStrap {

@@ -9,13 +9,13 @@ import java.util.List;
 
 /**
  * JSONUtil
- * <p> TODO
+ *
+ * <p>Jackson JSON 工具类 //TODO 待完善
  *
  * @author ivan
- * @version 1.0
- * Created by ivan on 18-11-19 - 下午8:07.
- **/
-public class JSONUtil {
+ * @version 1.0 Created by ivan on 18-11-19 - 下午8:07.
+ */
+public class JsonUtil {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -52,28 +52,15 @@ public class JSONUtil {
 
     public static <T> T toBeanList(Class<T> entityClass, String jsonString) {
         try {
-            mapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-            return mapper.readValue(jsonString, mapper.getTypeFactory().constructCollectionType(List.class, entityClass));
+            mapper =
+                    new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            return mapper.readValue(
+                    jsonString, mapper.getTypeFactory().constructCollectionType(List.class, entityClass));
         } catch (Exception e) {
             throw new RuntimeException("JSON【" + jsonString + "】转对象列表时出错", e);
         }
     }
 
-    /**
-     * 用于对象通过其他工具已转为JSON的字符形式，这里不需要再加上引号
-     *
-     * @param obj
-     * @param isObject
-     */
-    public static String getJsonSuccess(String obj, boolean isObject) {
-        String jsonString = null;
-        if (obj == null) {
-            jsonString = "{\"success\":true}";
-        } else {
-            jsonString = "{\"success\":true,\"data\":" + obj + "}";
-        }
-        return jsonString;
-    }
 
     public static String getJsonSuccess(Object obj) {
         return getJsonSuccess(obj, null);
@@ -116,7 +103,7 @@ public class JSONUtil {
     }
 
     public static String getErrorMessage(Exception e, String defaultMessage) {
-        return defaultMessage != null ? defaultMessage : null;
+        return defaultMessage;
     }
 
     public static ObjectMapper getMapper() {
