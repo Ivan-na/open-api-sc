@@ -1,0 +1,9 @@
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/model/vo/CommonParams.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/model/dto/ResponseData.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/base/BaseService.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/constant/ResponseCode.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/util/JSONUtil.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/model/entity/backend/BizCommonEntity.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/base/BaseApi.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/model/entity/CommonEntity.java
+/home/ivan/git-repo/open-api-sc/support-commons/src/main/java/com/fenbeitong/open/api/support/commons/model/vo/backend/BizCommonParams.java
