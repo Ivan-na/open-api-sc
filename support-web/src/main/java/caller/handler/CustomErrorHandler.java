@@ -16,8 +16,9 @@ public class CustomErrorHandler implements ResponseErrorHandler {
    * @param response :
    * @return boolean
    * @author Created by ivan on 下午8:57 18-11-22.
-   * <p>//TODO 错误发现待完成
-   * @see org.springframework.web.client.ResponseErrorHandler#hasError(org.springframework.http.client.ClientHttpResponse)
+   *     <p>//TODO 错误发现待完成
+   * @see
+   *     org.springframework.web.client.ResponseErrorHandler#hasError(org.springframework.http.client.ClientHttpResponse)
    */
   @Override
   public boolean hasError(ClientHttpResponse response) {
@@ -27,10 +28,10 @@ public class CustomErrorHandler implements ResponseErrorHandler {
   /**
    * @param response :
    * @author Created by ivan on 下午8:57 18-11-22.
-   * <p>//TODO 错误处理待完成
-   * @see org.springframework.web.client.ResponseErrorHandler#handleError(org.springframework.http.client.ClientHttpResponse)
+   *     <p>//TODO 错误处理待完成
+   * @see
+   *     org.springframework.web.client.ResponseErrorHandler#handleError(org.springframework.http.client.ClientHttpResponse)
    */
   @Override
-  public void handleError(ClientHttpResponse response) {
-  }
+  public void handleError(ClientHttpResponse response) {}
 }

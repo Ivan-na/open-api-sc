@@ -1,4 +1,4 @@
-package constant;
+package com.fenbeitong.open.api.service.jwt.support.commons.constants;
 
 /**
  * Enum for Response Code

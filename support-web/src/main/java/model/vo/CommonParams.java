@@ -11,5 +11,4 @@ import lombok.Data;
  * @version 1.0 Created by ivan on 18-11-19 - 下午2:08.
  */
 @Data
-public class CommonParams<T> {
-}
+public class CommonParams<T> {}
