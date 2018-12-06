@@ -13,8 +13,7 @@ import com.fenbeitong.open.api.service.jwt.support.commons.constants.ExceptionEn
 public class OpenApiException extends RuntimeException {
   private Integer code;
     /**
-     * INFO 用于日志中输出相关的可追踪分析内容
-     * eg，requestId，ipAddress，Class name
+     * INFO 用于日志中输出相关的可追踪分析内容 eg，requestId，ipAddress，Class name
      */
   private String info;
 

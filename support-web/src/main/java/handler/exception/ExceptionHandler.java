@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * ExceptionHandler
  *
- * <p>TODO
+ * <p>Exception 统一处理
  *
  * @author ivan
  * @version 1.0 Created by ivan on 18-12-5 - 下午7:55.
