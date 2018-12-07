@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "JWT")
+@ConfigurationProperties(prefix = "open-jwt")
 public class JwtConfig {
   private String iss;
   private String sub;

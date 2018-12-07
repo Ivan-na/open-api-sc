@@ -14,10 +14,8 @@
     <module>support-gateway</module>
     <module>support-discovery</module>
     <module>support-commons</module>
-    <module>service-auth</module>
     <module>edge-saas</module>
     <module>support-web</module>
-    <module>service-usercenter</module>
     <module>service-JWT</module>
   </modules>
 

@@ -6,10 +6,10 @@ mybatis-plus:
   configuration:
     cache-enabled: false
 ## log
-logging:
-  config: service-JWT/src/main/resources/log4j-dev.properties
+##logging:
+##  config: service-JWT/src/main/resources/log4j-dev.properties
 ## JWT
-JWT:
+open-jwt:
   iss: api
   sub: token
   exp: 10
@@ -18,9 +18,9 @@ JWT:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.16.0.7:3306/stereo-dev?useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/open-api?useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true
+    username: root
+    password: ivanna83
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5

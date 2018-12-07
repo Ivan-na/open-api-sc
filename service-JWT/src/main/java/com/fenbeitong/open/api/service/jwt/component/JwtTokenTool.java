@@ -8,9 +8,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fenbeitong.open.api.service.jwt.config.JwtConfig;
 import com.fenbeitong.open.api.service.jwt.model.dto.JwtToken;
-import com.fenbeitong.open.api.service.jwt.support.commons.util.RandomUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fenbeitong.open.api.support.commons.util.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +29,6 @@ import java.util.Map;
  */
 @Component
 public class JwtTokenTool {
-    private static Logger logger = LoggerFactory.getLogger(JwtTokenTool.class);
-
     private final JwtConfig jwtConfig;
 
     @Autowired

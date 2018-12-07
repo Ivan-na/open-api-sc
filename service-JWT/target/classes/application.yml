@@ -1,6 +1,0 @@
-server:
-  port: 8333
-spring:
-  profiles:
-    active: dev
-
