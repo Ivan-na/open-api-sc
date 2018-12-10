@@ -17,11 +17,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 
@@ -33,9 +35,8 @@ import java.time.LocalDateTime;
  * @author ivan
  * @version 1.0 Created by ivan on 18-12-5 - 下午7:55.
  */
-@RestControllerAdvice
 @Slf4j
-public class ExceptionHandler {
+public class GlobalExceptionHandler {
 
   /**
    * @author Created by ivan on 下午6:36 18-12-7.
@@ -44,8 +45,9 @@ public class ExceptionHandler {
    * @param exception :
    * @return com.fenbeitong.open.api.support.web.model.dto.response.OpenApiResponse
    */
-  @org.springframework.web.bind.annotation.ExceptionHandler
-  public OpenApiResponse exceptionHandler(Exception exception) {
+  @ExceptionHandler(value = Exception.class)
+  public OpenApiResponse exceptionHandler(
+      HttpServletRequest request, HttpServletResponse response, Exception exception) {
     if (exception instanceof OpenApiException) {
       return handleOpenApiException((OpenApiException) exception);
     } else if (exception instanceof MissingPathVariableException) {
@@ -86,29 +88,25 @@ public class ExceptionHandler {
     } else if (exception instanceof AsyncRequestTimeoutException) {
       return handleAsyncRequestTimeoutException((AsyncRequestTimeoutException) exception);
     } else {
-      log.debug(
-          "===========================Unknown Exception Start==========================================");
-      log.debug("Exception msg  : {}", exception.getMessage());
-      log.debug("Exception cause  : {}", exception.getCause());
-      log.debug("Catch Time: {}", LocalDateTime.now());
-      log.debug(
-          "===========================Unknown Exception end=================================================");
+      log.info("==========Unknown Exception Start==========");
+      log.info("Exception msg  : {}", exception.getMessage());
+      log.info("Exception cause  : {}", exception.getCause());
+      log.info("Catch Time: {}", LocalDateTime.now());
+      log.info("==========Unknown Exception end==========");
       // TODO 邮件 cause,trace
       return OpenApiResponse.failure(ResponseCodeEnum.UNKNOWN.transform(), exception);
     }
   }
 
   private OpenApiResponse handleOpenApiException(OpenApiException ex) {
-    log.debug(
-        "===========================OpanApi Exception Start==========================================");
-    log.debug("Response code  : {}", ex.getResponseCode().getCode());
-    log.debug("Response Message  : {}", ex.getResponseCode().getMsg());
-    log.debug("Exception msg  : {}", ex.getMessage());
-    log.debug("Exception cause  : {}", ex.getCause());
-    log.debug("Log Info : {}", ex.getInfo());
-    log.debug("Catch Time: {}", LocalDateTime.now());
-    log.debug(
-        "===========================OpenApi Exception end=================================================");
+    log.info("==========OpanApi Exception Start==========");
+    log.info("Response code  : {}", ex.getResponseCode().getCode());
+    log.info("Response Message  : {}", ex.getResponseCode().getMsg());
+    log.info("Exception msg  : {}", ex.getMessage());
+    log.info("Exception cause  : {}", ex.getCause());
+    log.info("Log Info : {}", ex.getInfo());
+    log.info("Catch Time: {}", LocalDateTime.now());
+    log.info("==========OpenApi Exception end==========");
     return OpenApiResponse.failure(ex.getResponseCode(), ex);
   }
 

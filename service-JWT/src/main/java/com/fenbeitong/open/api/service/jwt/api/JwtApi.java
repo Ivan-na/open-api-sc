@@ -4,6 +4,8 @@ import com.fenbeitong.open.api.service.jwt.component.JwtTokenTool;
 import com.fenbeitong.open.api.service.jwt.model.dto.JwtToken;
 import com.fenbeitong.open.api.service.jwt.model.vo.JwtParams;
 import com.fenbeitong.open.api.support.web.base.BaseApi;
+import com.fenbeitong.open.api.support.web.emuns.BizResponseCodeEnum;
+import com.fenbeitong.open.api.support.web.handler.exception.domain.OpenApiException;
 import com.fenbeitong.open.api.support.web.model.dto.response.OpenApiResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +48,9 @@ public class JwtApi extends BaseApi {
   @ApiOperation(value = "Get List", notes = "list")
   public OpenApiResponse<JwtToken> auth(@RequestBody @Validated JwtParams jwtParams)
       throws UnsupportedEncodingException {
+    if("string".equals(jwtParams.getAppId())){
+      throw new OpenApiException(BizResponseCodeEnum.UNKNOWN);
+    }
     JwtToken jwtToken = jwtTokenTool.genJWTToken();
     return success(jwtToken);
   }
