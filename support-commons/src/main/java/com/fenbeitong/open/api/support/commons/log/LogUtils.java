@@ -47,6 +47,17 @@ public class LogUtils {
             .result(object)
             .ip(ip)
             .build();
-    log.info(gson.toJson(logInfo));
+
+    log.info("==========Request Aspect Start==========");
+    log.info("Request Map      : {}", logInfo.getParameterMap().toString());
+    log.info("Request Uid      : {}", logInfo.getUid());
+    log.info("Request Body     : {}", logInfo.getRequestBody());
+    log.info("Request Url      : {}", logInfo.getUrl());
+    log.info("Request Mapping  : {}", logInfo.getMapping());
+    log.info("Request Method   : {}", logInfo.getMethod());
+    log.info("Response Result  : {}", logInfo.getResult());
+    log.info("Runtime          : {}", logInfo.getRunTime());
+    log.info("Request IP       : {}", logInfo.getIp());
+    log.info("==========Request Aspect end==========");
   }
 }

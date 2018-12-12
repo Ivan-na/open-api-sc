@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * JwtLogAspect
@@ -23,12 +22,16 @@ import java.util.Optional;
  */
 @Aspect
 @Slf4j
+@Component
 public class JwtLogAspect {
-  @Pointcut("@annotation(org.springframework.web.bind.annotation.RestController)")
+  private final String POINT_CUT="execution(* com.fenbeitong.open.api.service" +
+          ".jwt.api.*.*(..))";
+
+  @Pointcut(POINT_CUT)
   public void pointCut() {}
 
   @AfterReturning(returning = "ret", pointcut = "pointCut()")
-  public void doAfterRuturing(Object ret) {
+  public void doAfterReturning(Object ret) {
     HttpServletRequest request = ApplicationUtils.getRequest();
     LogUtils.printLog((Long)   request.getAttribute(WebConstant.API_BEGIN_TIME),
             request.getAttribute(WebConstant.API_UID),
