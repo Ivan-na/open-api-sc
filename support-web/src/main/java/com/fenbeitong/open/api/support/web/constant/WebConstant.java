@@ -10,15 +10,15 @@ package com.fenbeitong.open.api.support.web.constant;
  */
 public interface WebConstant {
   /** Rest Template Util 连接超时时间（秒） */
-  public static final long REST_CALL_CONNECT_TIMEOUT_SECONDS = 3L;
+  long REST_CALL_CONNECT_TIMEOUT_SECONDS = 3L;
   /** Rest Template Util 读取超时时间（秒） */
-  public static final long REST_CALL_READ_TIMEOUT_SECONDS = 12L;
+  long REST_CALL_READ_TIMEOUT_SECONDS = 12L;
 
   /** Request */
-  public static final String API_REQURL = "API_REQURL";
+  String API_REQURL = "API_REQURL";
 
-  public static final String API_MAPPING = "API_MAPPING";
-  public static final String API_METHOD = "API_METHOD";
-  public static final String API_BEGIN_TIME = "API_BEGIN_TIME";
-  public static final String API_UID = "API_UID";
+  String API_MAPPING = "API_MAPPING";
+  String API_METHOD = "API_METHOD";
+  String API_BEGIN_TIME = "API_BEGIN_TIME";
+  String API_UID = "API_UID";
 }
