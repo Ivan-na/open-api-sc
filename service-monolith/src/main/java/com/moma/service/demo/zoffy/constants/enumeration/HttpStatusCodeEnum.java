@@ -1,5 +1,7 @@
 package com.moma.service.demo.zoffy.constants.enumeration;
 
+import com.moma.service.demo.zoffy.response.dto.HttpStatusInfo;
+
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -118,5 +120,10 @@ public enum HttpStatusCodeEnum {
 
     public String msg() {
         return this.msg;
+    }
+
+
+    public HttpStatusInfo transform() {
+        return HttpStatusInfo.builder().code(code()).msg(msg()).build();
     }
 }

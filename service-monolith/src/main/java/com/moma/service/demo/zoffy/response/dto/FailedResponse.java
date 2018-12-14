@@ -1,0 +1,33 @@
+package com.moma.service.demo.zoffy.response.dto;
+
+import com.moma.service.demo.zoffy.response.Response;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+/**
+ * FailedResponse
+ *
+ * <p>TODO
+ *
+ * @author ivan
+ * @version 1.0 Created by ivan on 12/14/18 - 5:18 PM.
+ */
+@Getter
+@ToString
+@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@EqualsAndHashCode(callSuper = false)
+public class FailedResponse extends Response implements java.io.Serializable {
+
+    private static final long serialVersionUID = -9037458751252134695L;
+    private Integer code;
+
+    private String msg;
+
+    private String errorMsg;
+
+    private String info;
+
+    private LocalDateTime time;
+}
