@@ -36,9 +36,12 @@
     <logback.version>1.2.3</logback.version>
     <!-- Common IO -->
     <commons-io.version>2.6</commons-io.version>
+    <!-- Model Mapper -->
+    <model-mapper.version>2.3.2</model-mapper.version>
 
     <!-- WEB -->
     <springfox-swagger.version>2.9.2</springfox-swagger.version>
+    <shiro.version>1.4.0</shiro.version>
 
     <!-- Service -->
     <!-- Mybatis Plus -->
@@ -53,6 +56,8 @@
 
     <!-- External -->
     <lombok.version>1.18.2</lombok.version>
+    <!-- Velocity -->
+    <velocity.version>1.7</velocity.version>
   </properties>
 
 
@@ -99,6 +104,14 @@
       <artifactId>logback-classic</artifactId>
       <version>${logback.version}</version>
     </dependency>
+
+    <!-- Model Mapper -->
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>${model-mapper.version}</version>
+    </dependency>
+
     <!-- Common End   -->
 
     <!-- Web Start -->
@@ -129,6 +142,13 @@
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
       <version>${springfox-swagger.version}</version>
+    </dependency>
+
+    <!-- Shiro -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
     </dependency>
 
     <!-- Web End   -->
@@ -164,6 +184,13 @@
       <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
+    <!-- velocity -->
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>${velocity.version}</version>
+    </dependency>
+
     <!-- External End   -->
 
     <!-- Spring Family Start -->

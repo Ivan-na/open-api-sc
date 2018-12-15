@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Bean;
  *
  * <p>Mybatis Plus Configuration
  *
+ * @see <a href="https://mp.baomidou.com/guide/">MyBatis-Plus</a>
  * @author ivan
  * @version 1.0 Created by ivan on 12/14/18 - 3:36 PM.
- * @see <a href="https://mp.baomidou.com/guide/">MyBatis-Plus</a>
  */
 //@SpringBootConfiguration
 public class MybatisPlusConfiguration {
