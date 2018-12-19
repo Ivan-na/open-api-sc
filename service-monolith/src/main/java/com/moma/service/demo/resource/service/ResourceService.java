@@ -14,5 +14,9 @@ import java.util.List;
  */
 public interface ResourceService extends BaseService<Resource> {
 
-    public List<ResourceAuthDto> getAuthResources(String method);
+  public List<ResourceAuthDto> getAuthResources(String method);
+
+  public List<ResourceAuthDto> getOpenAuth();
+
+  public List<ResourceAuthDto> getNonAuth();
 }

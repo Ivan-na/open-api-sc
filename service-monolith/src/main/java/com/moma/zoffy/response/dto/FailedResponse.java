@@ -22,14 +22,14 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 public class FailedResponse extends Response implements java.io.Serializable {
 
-    private static final long serialVersionUID = -9037458751252134695L;
-    private Integer code;
+  private static final long serialVersionUID = -9037458751252134695L;
+  private Integer code;
 
-    private String msg;
+  private String msg;
 
-    private String errorMsg;
+  private String errorMsg;
 
-    private String info;
+  private String info;
 
-    private LocalDateTime time;
+  private LocalDateTime time;
 }

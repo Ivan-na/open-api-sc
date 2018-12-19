@@ -16,19 +16,19 @@ import java.util.function.Consumer;
  */
 public class HttpMessageConverterWrapper {
 
-    /**
-     * @return java.util.function.Consumer<org.springframework.http.converter.HttpMessageConverter                               <
-                       *       ?>>
-     * @author Created by ivan on 5:28 PM 12/13/18.
-     * <p>//Wrapper Jackson Converter with Customed
-     */
-    public static Consumer<HttpMessageConverter<?>> objectMapperWrapper() {
-        return converter -> {
-            if (converter instanceof MappingJackson2HttpMessageConverter) {
-                MappingJackson2HttpMessageConverter httpMessageConverter =
-                        (MappingJackson2HttpMessageConverter) converter;
-                JacksonHelper.getObjectMapper(httpMessageConverter.getObjectMapper());
-            }
-        };
-    }
+  /**
+   * @return java.util.function.Consumer<org.springframework.http.converter.HttpMessageConverter <
+   *     ?>>
+   * @author Created by ivan on 5:28 PM 12/13/18.
+   *     <p>//Wrapper Jackson Converter with Customed
+   */
+  public static Consumer<HttpMessageConverter<?>> objectMapperWrapper() {
+    return converter -> {
+      if (converter instanceof MappingJackson2HttpMessageConverter) {
+        MappingJackson2HttpMessageConverter httpMessageConverter =
+            (MappingJackson2HttpMessageConverter) converter;
+        JacksonHelper.getObjectMapper(httpMessageConverter.getObjectMapper());
+      }
+    };
+  }
 }

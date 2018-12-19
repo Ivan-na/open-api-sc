@@ -29,16 +29,16 @@ public class SwaggerConfiguration {
      *
      * @return
      */
-    private static ApiInfo apiInfo() {
-/*
-    String title = appInfo.getTitle();
-    String description = appInfo.getDes();
-    String serviceUrl = appInfo.getUrl();
-    String version = appInfo.getVersion();
-    String contactName = appInfo.getConName();
-    String contactUrl = appInfo.getConUrl();
-    String contactEmail = appInfo.getConEmail();
-*/
+    private ApiInfo apiInfo() {
+    /*
+        String title = appInfo.getTitle();
+        String description = appInfo.getDes();
+        String serviceUrl = appInfo.getUrl();
+        String version = appInfo.getVersion();
+        String contactName = appInfo.getConName();
+        String contactUrl = appInfo.getConUrl();
+        String contactEmail = appInfo.getConEmail()
+    */
 
         return new ApiInfoBuilder()
                 .title("123")
@@ -52,11 +52,10 @@ public class SwaggerConfiguration {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .apiInfo(this.apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build()
-                .useDefaultResponseMessages(false);
+                .build();
     }
 }

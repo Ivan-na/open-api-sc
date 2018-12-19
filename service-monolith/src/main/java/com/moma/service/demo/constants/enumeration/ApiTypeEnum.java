@@ -16,7 +16,7 @@ public enum ApiTypeEnum {
     /**
      * 需要登录
      */
-    UNOPEN(0),
+    TOKEN(0),
     /**
      * 开放,无需鉴权
      */
@@ -43,5 +43,10 @@ public enum ApiTypeEnum {
 
     public int getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return type + "";
     }
 }

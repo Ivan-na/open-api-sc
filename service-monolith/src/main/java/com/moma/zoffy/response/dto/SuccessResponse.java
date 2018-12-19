@@ -19,9 +19,9 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 public class SuccessResponse<T> extends Response<T> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 4074598966911131015L;
+  private static final long serialVersionUID = 4074598966911131015L;
 
-    private Integer code;
-    private String msg;
-    private T result;
+  private Integer code;
+  private String msg;
+  private T result;
 }

@@ -16,46 +16,46 @@ import java.util.Optional;
  */
 @Slf4j
 public abstract class LogHelper {
-    /**
-     * @param requestId    :
-     * @param parameterMap :
-     * @param requestBody  :
-     * @param url          :
-     * @param mapping      :
-     * @param method       :
-     * @param result       :
-     * @param runTime      :
-     * @param ip           :
-     * @param appid        :
-     * @author Created by ivan on 5:55 PM 12/13/18.
-     * <p>print Request Log Info
-     */
-    public static void printRequestLogInfo(
-            String requestId,
-            Map<String, String[]> parameterMap,
-            String requestBody,
-            String url,
-            String mapping,
-            String method,
-            Object result,
-            String runTime,
-            String ip,
-            String appid) {
+  /**
+   * @param requestId :
+   * @param parameterMap :
+   * @param requestBody :
+   * @param url :
+   * @param mapping :
+   * @param method :
+   * @param result :
+   * @param runTime :
+   * @param ip :
+   * @param appid :
+   * @author Created by ivan on 5:55 PM 12/13/18.
+   *     <p>print Request Log Info
+   */
+  public static void printRequestLogInfo(
+      String requestId,
+      Map<String, String[]> parameterMap,
+      String requestBody,
+      String url,
+      String mapping,
+      String method,
+      Object result,
+      Long runTime,
+      String ip,
+      String appid) {
 
-        RequestLogInfo requestLogInfo =
-                RequestLogInfo.builder()
-                        .requestId(requestId)
-                        .ip(ip)
-                        .mapping(mapping)
-                        .method(method)
-                        .parameterMap(parameterMap)
-                        .requestBody(Optional.ofNullable(JacksonHelper.parse(requestBody)).orElse(requestBody))
-                        .result(result)
-                        .runTime(runTime)
-                        .url(url)
-                        .appid(appid)
-                        .build();
+    RequestLogInfo requestLogInfo =
+        RequestLogInfo.builder()
+            .requestId(requestId)
+            .ip(ip)
+            .mapping(mapping)
+            .method(method)
+            .parameterMap(parameterMap)
+            .requestBody(Optional.ofNullable(JacksonHelper.parse(requestBody)).orElse(requestBody))
+            .result(result)
+            .runTime((null != runTime ? System.currentTimeMillis() - runTime : 0) + " ms")
+            .url(url)
+            .appid(appid)
+            .build();
 
-        log.info(JacksonHelper.toJson(requestLogInfo));
-    }
+    log.info(JacksonHelper.toJson(requestLogInfo));
+  }
 }
