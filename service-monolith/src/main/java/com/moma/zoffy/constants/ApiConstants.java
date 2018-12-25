@@ -3,21 +3,52 @@ package com.moma.zoffy.constants;
 /**
  * ApiConstants
  *
- * <p>TODO
+ * <p>API Constants
  *
  * @author ivan
  * @version 1.0 Created by ivan on 12/15/18 - 4:02 PM.
  */
 public interface ApiConstants {
 
-    public static final String COMPANY_ID = "app_id";
-    public static final String ACCESS_TOKEN = "access_token";
+    /* Token Ref. */
+    /**
+     * Company ID
+     */
+    String COMPANY_ID = "appId";
+    /**
+     * Access Token
+     */
+    String ACCESS_TOKEN = "accessToken";
+    /**
+     * Token RSA Key
+     */
+    String TOKEN_SECRET = "1s6U65P4bAay14bMDgHWgtqaTHNTZPZNMDJu3k";
 
-    public static final String REQUEST_START_TIME = "start_time";
-    public static final String REQUEST_ID = "request_id";
-    public static final String REQUEST_URL = "url";
-    public static final String REQUEST_METHOD = "method";
-    public static final String REQUEST_MEPPING = "mapping";
+    /* Validating Sign Ref. */
+    Long TIMESTAMP_VALID_GAP = 10 * 60 * 1000L;
+    String CALCULATE_SIGN_TIMESTAMP = "timestamp=";
+    String CALCULATE_SIGN_DATA = "&data=";
+    String CALCULATE_SIGN_SIGNKEY = "&sign_key=";
 
-    public static final String TOKEN_SECRET = "1s6U65P4bAay14bMDgHWgtqaTHNTZPZNMDJu3k";
+    /* Request Ref. */
+    /**
+     * Request Start Time
+     */
+    String REQUEST_START_TIME = "startTime";
+    /**
+     * Request Id
+     */
+    String REQUEST_ID = "requestId";
+    /**
+     * Requset URL
+     */
+    String REQUEST_URL = "url";
+    /**
+     * Request Method
+     */
+    String REQUEST_METHOD = "method";
+    /**
+     * Request Mapping
+     */
+    String REQUEST_MEPPING = "mapping";
 }

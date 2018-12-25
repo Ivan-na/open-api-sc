@@ -6,7 +6,7 @@ import lombok.*;
 /**
  * SuccessResponse
  *
- * <p>TODO
+ * <p>Success Response
  *
  * @author ivan
  * @version 1.0 Created by ivan on 12/14/18 - 5:56 PM.
@@ -20,8 +20,12 @@ import lombok.*;
 public class SuccessResponse<T> extends Response<T> implements java.io.Serializable {
 
   private static final long serialVersionUID = 4074598966911131015L;
-
+    /**
+     * Response Code
+     */
   private Integer code;
-  private String msg;
-  private T result;
+    /** Response Message */
+    private String msg;
+    /** Response Object */
+    private T result;
 }

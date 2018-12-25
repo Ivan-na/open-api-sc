@@ -9,6 +9,8 @@ import lombok.experimental.Accessors;
 import java.time.LocalDate;
 
 /**
+ * Api Resource Entity
+ *
  * @author Ivan
  * @since 2018-12-15
  */

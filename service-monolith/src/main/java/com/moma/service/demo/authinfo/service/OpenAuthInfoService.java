@@ -5,11 +5,27 @@ import com.moma.service.demo.authinfo.model.domain.OpenAuthInfo;
 import com.moma.zoffy.service.BaseService;
 
 /**
- * 服务类
+ * OpenAuthInfoService
  *
- * @author Ivan
- * @since 2018-12-17
+ * <p>Service Interface
+ *
+ * @version 1.0
+ * @author Created by ivan on 2:24 PM 12/24/18.
  */
 public interface OpenAuthInfoService extends BaseService<OpenAuthInfo> {
-  Boolean checkCompanyAuthInfo(TokenParam tokenParam);
+    /**
+     * @param tokenParam :
+     * @return java.lang.Boolean
+     * @author Created by ivan on 4:43 PM 12/21/18.
+     * <p>Check Company if existed
+     */
+    Boolean checkCompanyAuthInfo(TokenParam tokenParam);
+
+    /**
+     * @param companyId :
+     * @return java.lang.String
+     * @author Created by ivan on 5:29 PM 12/24/18.
+     * <p>get Company Sign Key
+     */
+    String getCompanySignKey(String companyId);
 }

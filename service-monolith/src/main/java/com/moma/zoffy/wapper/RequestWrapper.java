@@ -1,10 +1,18 @@
 package com.moma.zoffy.wapper;
 
+import com.moma.zoffy.helper.RequestHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.ReadListener;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 /**
  * RequestWrapper
@@ -16,28 +24,111 @@ import javax.servlet.http.HttpServletRequestWrapper;
  */
 public class RequestWrapper extends HttpServletRequestWrapper {
 
-  public RequestWrapper(HttpServletRequest request) {
-    super(request);
-  }
+    /**
+     * Copy Body Byte[]
+     */
+    private final byte[] requestBody;
 
-  @Override
-  public String getHeader(String name) {
-    String value = super.getHeader(name);
-    return StringUtils.isNotBlank(value) ? HtmlUtils.htmlEscape(value) : "";
-  }
+    /**
+     * @param request :
+     * @return
+     * @author Created by ivan on 3:37 PM 12/24/18.
+     * <p>//Wrapper
+     */
+    public RequestWrapper(HttpServletRequest request) {
+        super(request);
+        requestBody = RequestHelper.getByteBody(request);
+    }
 
+    /**
+     * @return java.io.BufferedReader
+     * @author Created by ivan on 3:38 PM 12/24/18.
+     * <p>//Get Request Reader
+     */
+    @Override
+    public BufferedReader getReader() {
+        ServletInputStream inputStream = getInputStream();
+        return Objects.isNull(inputStream)
+                ? null
+                : new BufferedReader(new InputStreamReader(inputStream));
+    }
+
+    /**
+     * @return javax.servlet.ServletInputStream
+     * @author Created by ivan on 3:39 PM 12/24/18.
+     * <p>//Get Request Input Stream
+     */
+    @Override
+    public ServletInputStream getInputStream() {
+        if (ObjectUtils.isEmpty(requestBody)) {
+            return null;
+        }
+        final ByteArrayInputStream bais = new ByteArrayInputStream(requestBody);
+        return new ServletInputStream() {
+
+            @Override
+            public boolean isFinished() {
+                return false;
+            }
+
+            @Override
+            public boolean isReady() {
+                return false;
+            }
+
+            @Override
+            @SuppressWarnings("EmptyMethod")
+            public void setReadListener(ReadListener readListener) {
+            }
+
+            @Override
+            public int read() {
+                return bais.read();
+            }
+        };
+    }
+
+    /**
+     * @author Created by ivan on 3:39 PM 12/24/18.
+     *     <p>//Get Request Header,escape
+     * @param name :
+     * @return java.lang.String
+     */
+    @Override
+    public String getHeader(String name) {
+        String value = super.getHeader(name);
+        return StringUtils.isNotBlank(value) ? HtmlUtils.htmlEscape(value) : "";
+    }
+
+    /**
+     * @author Created by ivan on 3:40 PM 12/24/18.
+     *     <p>//Get Request Parameter,escape
+     * @param name :
+     * @return java.lang.String
+   */
   @Override
   public String getParameter(String name) {
     String value = super.getParameter(name);
     return StringUtils.isNotBlank(value) ? HtmlUtils.htmlEscape(value) : "";
   }
 
+    /**
+     * @author Created by ivan on 3:40 PM 12/24/18.
+     *     <p>//get Request Query String, escape
+     * @return java.lang.String
+   */
   @Override
   public String getQueryString() {
     String value = super.getQueryString();
     return StringUtils.isNotBlank(value) ? HtmlUtils.htmlEscape(value) : "";
   }
 
+    /**
+     * @author Created by ivan on 3:41 PM 12/24/18.
+     * <p>//Get Request Attribute, escape
+     * @param name :
+     * @return java.lang.Object
+   **/
   @Override
   public Object getAttribute(String name) {
     Object value = super.getAttribute(name);
@@ -46,9 +137,15 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         HtmlUtils.htmlEscape((String) value);
       }
     }
-    return value;
+      return value;
   }
 
+    /**
+     * @author Created by ivan on 3:41 PM 12/24/18.
+     * <p>//Get Request Parameter Vlaue, escape
+     * @param name :
+     * @return java.lang.String[]
+   **/
   @Override
   public String[] getParameterValues(String name) {
     String[] values = super.getParameterValues(name);

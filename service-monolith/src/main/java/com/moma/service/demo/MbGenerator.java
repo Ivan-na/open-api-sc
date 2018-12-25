@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.moma.zoffy.constants.SysConstants;
 
 import java.util.*;
 
@@ -22,6 +23,7 @@ import java.util.*;
  * @author ivan
  * @version 1.0 Created by ivan on 12/15/18 - 5:30 PM.
  */
+@SuppressWarnings("AlibabaMethodTooLong")
 public class MbGenerator {
   public static void main(String[] args) {
     MbGenerator.generator();
@@ -29,8 +31,8 @@ public class MbGenerator {
   /** MySQL generator */
   public static void generator() {
 
-    String table_name = "api_resource";
-    String package_name = "resource";
+      String tableName = "api_resource";
+      String packageName = "resource";
 
     // 自定义需要填充的字段
     List<TableFill> tableFillList = new ArrayList<>();
@@ -43,14 +45,22 @@ public class MbGenerator {
             .setGlobalConfig(
                 // 全局配置
                 new GlobalConfig()
-                    .setOutputDir("/home/ivan/develop/code/") // 输出目录
-                    .setFileOverride(true) // 是否覆盖文件
-                    .setActiveRecord(false) // 开启 activeRecord 模式
-                    .setEnableCache(false) // XML 二级缓存
-                    .setBaseResultMap(false) // XML ResultMap
-                    .setBaseColumnList(false) // XML columList
-                    .setKotlin(false) // 是否生成 kotlin 代码
-                    .setAuthor("Ivan") // 作者
+                        // 输出目录
+                        .setOutputDir("/home/ivan/develop/code/")
+                        // 是否覆盖文件
+                        .setFileOverride(true)
+                        // 开启 activeRecord 模式
+                        .setActiveRecord(false)
+                        // XML 二级缓存
+                        .setEnableCache(false)
+                        // XML ResultMap
+                        .setBaseResultMap(false)
+                        // XML columList
+                        .setBaseColumnList(false)
+                        // 是否生成 kotlin 代码
+                        .setKotlin(false)
+                        // 作者
+                        .setAuthor("Ivan")
                     // 自定义文件命名，注意 %s 会自动填充表实体属性！
                     .setEntityName("%s")
                     .setMapperName("%sDao")
@@ -61,7 +71,8 @@ public class MbGenerator {
             .setDataSource(
                 // 数据源配置
                 new DataSourceConfig()
-                    .setDbType(DbType.MYSQL) // 数据库类型
+                        // 数据库类型
+                        .setDbType(DbType.MYSQL)
                     .setTypeConvert(
                         new MySqlTypeConvert() {
                           @Override
@@ -92,10 +103,14 @@ public class MbGenerator {
             .setStrategy(
                 // 策略配置
                 new StrategyConfig()
-                    .setCapitalMode(false) // 全局大写命名
-                    .setTablePrefix("api_") // 去除前缀
-                    .setNaming(NamingStrategy.underline_to_camel) // 表名生成策略
-                    .setInclude(new String[] {table_name}) // 需要生成的表
+                        // 全局大写命名
+                        .setCapitalMode(false)
+                        // 去除前缀
+                        .setTablePrefix("api_")
+                        // 表名生成策略
+                        .setNaming(NamingStrategy.underline_to_camel)
+                        // 需要生成的表
+                        .setInclude(new String[]{tableName})
                     // 自定义实体父类
                     .setSuperEntityClass("com.moma.zoffy.model.domain.BaseModel")
                     // 自定义实体，公共字段
@@ -123,7 +138,7 @@ public class MbGenerator {
             .setPackageInfo(
                 // 包配置
                 new PackageConfig()
-                    .setParent("com.moma.service.demo." + package_name)
+                        .setParent("com.moma.service.demo." + packageName)
                     .setController("controller")
                     .setEntity("model.domain")
                     .setMapper("dao")
@@ -134,7 +149,7 @@ public class MbGenerator {
                 new InjectionConfig() {
                   @Override
                   public void initMap() {
-                    Map<String, Object> map = new HashMap<>();
+                      Map<String, Object> map = new HashMap<>(SysConstants.INIT_MAP_SIZE);
                     this.setMap(map);
                   }
                 }.setFileOutConfigList(
@@ -151,14 +166,14 @@ public class MbGenerator {
             .setTemplate(
                 // 关闭默认 xml 生成，调整生成 至 根目录
                 new TemplateConfig().setXml(null)
-                // 自定义模板配置，模板可以参考源码 /mybatis-plus/src/main/resources/template 使用 copy
-                // 至您项目 src/main/resources/template 目录下，模板名称也可自定义如下配置：
-                // .setController("...");
-                // .setEntity("...");
-                // .setMapper("...");
-                // .setXml("...");
-                // .setService("...");
-                // .setServiceImpl("...");
+                /* 自定义模板配置，模板可以参考源码 /mybatis-plus/src/main/resources/template 使用 copy
+                至您项目 src/main/resources/template 目录下，模板名称也可自定义如下配置：
+                .setController("...");
+                .setEntity("...");
+                .setMapper("...");
+                .setXml("...");
+                .setService("...");
+                .setServiceImpl("...");*/
                 );
     mpg.execute();
   }

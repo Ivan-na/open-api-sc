@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * FailedResponse
  *
- * <p>TODO
+ * <p>Failed Response
  *
  * @author ivan
  * @version 1.0 Created by ivan on 12/14/18 - 5:18 PM.
@@ -23,13 +23,16 @@ import java.time.LocalDateTime;
 public class FailedResponse extends Response implements java.io.Serializable {
 
   private static final long serialVersionUID = -9037458751252134695L;
-  private Integer code;
-
+    /**
+     * Response Code
+     */
+    private Integer code;
+    /** Response Message */
   private String msg;
-
+    /** Response Error Message */
   private String errorMsg;
-
+    /** Response Extra Info */
   private String info;
-
+    /** Response Time */
   private LocalDateTime time;
 }

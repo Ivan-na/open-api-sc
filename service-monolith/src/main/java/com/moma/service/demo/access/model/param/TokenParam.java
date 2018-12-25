@@ -1,16 +1,17 @@
 package com.moma.service.demo.access.model.param;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 /**
  * TokenParam
  *
- * <p>TODO
+ * <p>Token Parameters
  *
  * @author ivan
  * @version 1.0 Created by ivan on 12/18/18 - 2:52 PM.

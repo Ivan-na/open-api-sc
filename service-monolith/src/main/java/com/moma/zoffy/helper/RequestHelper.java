@@ -1,8 +1,13 @@
 package com.moma.zoffy.helper;
 
+import com.moma.zoffy.constants.ApiConstants;
+import com.moma.zoffy.constants.HttpConstants;
+import com.moma.zoffy.constants.SysConstants;
 import com.moma.zoffy.constants.enumeration.HttpMethodEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -16,7 +21,21 @@ import java.nio.charset.StandardCharsets;
  * @author ivan
  * @version 1.0 Created by ivan on 12/13/18 - 7:34 PM.
  */
+@Slf4j
 public class RequestHelper {
+    /**
+     * @param httpRequest : request
+     * @return ja`va.lang.String
+     * @author Created by ivan on 2:38 PM 12/24/18.
+     * <p>Get Token from request
+     */
+    public static String getToken(HttpServletRequest httpRequest) {
+        String token = httpRequest.getHeader(SysConstants.AUTHORIZATION_HEADER);
+        if (StringUtils.isBlank(token)) {
+            token = httpRequest.getParameter(ApiConstants.ACCESS_TOKEN);
+        }
+        return StringUtils.isBlank(token) ? null : token.replaceFirst("Bearer", "");
+    }
 
   /**
    * @param request :
@@ -35,6 +54,21 @@ public class RequestHelper {
     return requestBody;
   }
 
+    /**
+     * @param request :
+     * @return byte[]
+     * @author Created by ivan on 3:19 PM 12/20/18.
+     * <p>getByteBody
+     */
+    public static byte[] getByteBody(HttpServletRequest request) {
+        byte[] body = new byte[0];
+        try {
+            body = StreamUtils.copyToByteArray(request.getInputStream());
+        } catch (IOException e) {
+            log.error("Error: Get RequestBody byte[] fail," + e);
+        }
+        return body;
+  }
   /**
    * @param request :
    * @return boolean
@@ -133,23 +167,23 @@ public class RequestHelper {
    */
   public static String getIpAddr(HttpServletRequest request) {
     // nginx代理获取的真实用户ip
-    String ip = request.getHeader("X-Real-IP");
-    if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
-      ip = request.getHeader("X-Forwarded-For");
-    }
-    if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
-      ip = request.getHeader("Proxy-Client-IP");
-    }
-    if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
-      ip = request.getHeader("WL-Proxy-Client-IP");
-    }
-    if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+      String ip = request.getHeader(HttpConstants.X_REAL_IP);
+      if (StringUtils.isBlank(ip) || HttpConstants.UNKNOWN.equalsIgnoreCase(ip)) {
+          ip = request.getHeader(HttpConstants.X_FORWARDED_FOR);
+      }
+      if (StringUtils.isBlank(ip) || HttpConstants.UNKNOWN.equalsIgnoreCase(ip)) {
+          ip = request.getHeader(HttpConstants.PROXY_CLIENT_IP);
+      }
+      if (StringUtils.isBlank(ip) || HttpConstants.UNKNOWN.equalsIgnoreCase(ip)) {
+          ip = request.getHeader(HttpConstants.WL_PROXY_CLIENT_IP);
+      }
+      if (StringUtils.isBlank(ip) || HttpConstants.UNKNOWN.equalsIgnoreCase(ip)) {
       ip = request.getRemoteAddr();
-    }
+      }
 
-    if (null != ip && ip.length() > 15) {
-      if (ip.indexOf(",") > 0) {
-        ip = ip.substring(0, ip.indexOf(","));
+      if (null != ip && ip.length() > HttpConstants.IP_MIN_LENGTH) {
+          if (ip.indexOf(SysConstants.GLOBE_SPLIT_COMMA) > 0) {
+              ip = ip.substring(0, ip.indexOf(SysConstants.GLOBE_SPLIT_COMMA));
       }
     }
     return ip;

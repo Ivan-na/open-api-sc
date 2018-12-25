@@ -7,30 +7,43 @@ import com.moma.service.demo.authinfo.dao.OpenAuthInfoDao;
 import com.moma.service.demo.authinfo.model.domain.OpenAuthInfo;
 import com.moma.service.demo.authinfo.service.OpenAuthInfoService;
 import com.moma.zoffy.service.impl.BaseServiceImpl;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import org.springframework.stereotype.Service;
 
 /**
- * 服务实现类
+ * OpenAuthInfoServiceImpl Service implementation
  *
- * @author Ivan
- * @since 2018-12-17
+ * @version 1.0
+ * @author Created by ivan on 2:24 PM 12/24/18.
  */
 @Service
 public class OpenAuthInfoServiceImpl extends BaseServiceImpl<OpenAuthInfoDao, OpenAuthInfo>
     implements OpenAuthInfoService {
 
-  @Override
-  public Boolean checkCompanyAuthInfo(TokenParam tokenParam) {
+    /**
+     * @param tokenParam :
+     * @return java.lang.Boolean
+     * @author Created by ivan on 2:24 PM 12/24/18.
+     * <p>checkCompanyAuthInfo
+     */
+    @Override
+    public Boolean checkCompanyAuthInfo(TokenParam tokenParam) {
+        Map<Property<OpenAuthInfo, ?>, String> paramMap = new HashMap<>(2);
+        paramMap.put(OpenAuthInfo::getAppId, tokenParam.getAppId());
+        paramMap.put(OpenAuthInfo::getAppKey, tokenParam.getAppKey());
+        LambdaQueryWrapper<OpenAuthInfo> authWrapper =
+                new LambdaQueryWrapper<OpenAuthInfo>().select(OpenAuthInfo::getId).allEq(paramMap);
+        OpenAuthInfo openAuthInfo = getOne(authWrapper, true);
+        return Objects.nonNull(openAuthInfo);
+    }
 
-    Map<Property<OpenAuthInfo, ?>, String> paramMap = new HashMap<>(2);
-    paramMap.put(OpenAuthInfo::getAppId, tokenParam.getAppId());
-    paramMap.put(OpenAuthInfo::getAppKey, tokenParam.getAppKey());
-    LambdaQueryWrapper<OpenAuthInfo> authWrapper =
-        new LambdaQueryWrapper<OpenAuthInfo>().select(OpenAuthInfo::getId).allEq(paramMap);
-    OpenAuthInfo openAuthInfo = getOne(authWrapper, true);
-    return Objects.nonNull(openAuthInfo);
-  }
+    @Override
+    public String getCompanySignKey(String companyId) {
+        LambdaQueryWrapper<OpenAuthInfo> getCompanyWrapper =
+                new LambdaQueryWrapper<OpenAuthInfo>().eq(OpenAuthInfo::getAppId, companyId);
+        return getOne(getCompanyWrapper).getSignKey();
+    }
 }

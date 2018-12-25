@@ -13,7 +13,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.moma.zoffy.handler.exception.exceptions.ZoffyException;
-import org.springframework.web.util.HtmlUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,7 +29,7 @@ import java.util.Objects;
  * @author ivan
  * @version 1.0 Created by ivan on 12/13/18 - 4:52 PM.
  */
-public abstract class JacksonHelper {
+public class JacksonHelper {
 
   private static ObjectMapper objectMapper;
 
@@ -65,7 +64,8 @@ public abstract class JacksonHelper {
    *     Features</a>
    */
   static ObjectMapper createObjectMapper(ObjectMapper objectMapper) {
-    // Set Features
+      objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+      // Set Feature
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -186,8 +186,10 @@ public abstract class JacksonHelper {
         String value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
         throws IOException {
       if (value != null) {
-        String encodedValue = HtmlUtils.htmlEscape(value);
-        jsonGenerator.writeString(encodedValue);
+          // TODO 暂时不进行处理
+          // String encodedValue = HtmlUtils.htmlEscape(value);
+          // jsonGenerator.writeString(encodedValue);
+          jsonGenerator.writeString(value);
       }
     }
   }

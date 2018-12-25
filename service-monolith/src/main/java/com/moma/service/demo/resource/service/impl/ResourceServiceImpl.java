@@ -12,24 +12,37 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 服务实现类
+ * ResourceServiceImpl
  *
- * @author Ivan
- * @since 2018-12-15
+ * <p>Api Resource Service Implementation
+ *
+ * @version 1.0
+ * @author Created by ivan on 2:55 PM 12/24/18.
  */
 @Service
 public class ResourceServiceImpl extends BaseServiceImpl<ResourceDao, Resource>
     implements ResourceService {
 
-  @Override
-  public List<ResourceAuthDto> getAuthResources(String method) {
-    LambdaQueryWrapper<Resource> resourceWrapper =
-        new LambdaQueryWrapper<Resource>()
-            .select(Resource::getApiMethod, Resource::getApiPath)
-            .eq(Resource::getApiMethod, method);
-    return entitys(resourceWrapper, e -> e.beanToBean(ResourceAuthDto.class));
-  }
+    /**
+     * @param method :
+     * @return java.util.List<com.moma.service.demo.model.dto.auth.ResourceAuthDto>
+     * @author Created by ivan on 3:02 PM 12/24/18.
+     * <p>//Get Api Resouces with specified HTTP Method and Url Path
+     */
+    @Override
+    public List<ResourceAuthDto> getAuthResources(String method) {
+        LambdaQueryWrapper<Resource> resourceWrapper =
+                new LambdaQueryWrapper<Resource>()
+                        .select(Resource::getApiMethod, Resource::getApiPath)
+                        .eq(Resource::getApiMethod, method);
+        return entitys(resourceWrapper, e -> e.beanToBean(ResourceAuthDto.class));
+    }
 
+    /**
+     * @author Created by ivan on 3:03 PM 12/24/18.
+     *     <p>//Get Api Resources with OPEN type
+     * @return java.util.List<com.moma.service.demo.model.dto.auth.ResourceAuthDto>
+   */
   @Override
   public List<ResourceAuthDto> getOpenAuth() {
     LambdaQueryWrapper<Resource> resourceWrapper =
@@ -39,6 +52,11 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourceDao, Resource>
     return entitys(resourceWrapper, e -> e.beanToBean(ResourceAuthDto.class));
   }
 
+    /**
+     * @author Created by ivan on 3:04 PM 12/24/18.
+     *     <p>//Get Api Resources with OPEN/TOKEN Type
+     * @return java.util.List<com.moma.service.demo.model.dto.auth.ResourceAuthDto>
+   */
   @Override
   public List<ResourceAuthDto> getNonAuth() {
     Object[] authTypes = new Object[] {ApiTypeEnum.OPEN, ApiTypeEnum.TOKEN};

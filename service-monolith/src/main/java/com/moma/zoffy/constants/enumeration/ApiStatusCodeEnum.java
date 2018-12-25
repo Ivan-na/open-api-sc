@@ -5,7 +5,7 @@ import com.moma.zoffy.response.dto.ApiStatusInfo;
 /**
  * ApiStatusCodeEnum
  *
- * <p>TODO
+ * <p>Self Defined Api Status Code
  *
  * @author ivan
  * @version 1.0 Created by ivan on 12/15/18 - 3:12 PM.
@@ -19,6 +19,26 @@ public enum ApiStatusCodeEnum {
      * 10000
      */
     UNKOWN_API_TYPE(10000, "未知的接口类型"),
+    /**
+     * 11000
+     */
+    UN_SIGN(11000, "sign签名未传递"),
+    /**
+     * 11001
+     */
+    SIGN_ERROR(11001, "sign签名不正确"),
+    /**
+     * 11003
+     */
+    UN_TIMESTAMP(11003, "timestamp时间戳未传递"),
+    /**
+     * 11004
+     */
+    UN_DATA(11004, "data数据未传递"),
+    /**
+     * 11009
+     */
+    UN_VALID_TIMESTAMP(11009, "timestamp失效"),
     ;
     /**
      * Code

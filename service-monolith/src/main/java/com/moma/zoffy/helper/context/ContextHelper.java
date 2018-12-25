@@ -17,7 +17,7 @@ import java.util.Optional;
  * @version 1.0 Created by ivan on 12/13/18 - 8:09 PM.
  */
 public class ContextHelper {
-  private static final ApplicationContext applicationContext =
+    private static final ApplicationContext APPLICATION_CONTEXT =
       ApplicationContextRegister.getApplicationContext();
 
   /**
@@ -27,8 +27,8 @@ public class ContextHelper {
    *     <p>//get Bean as Object
    */
   public static Object getBeanObject(String beanName) {
-    if (applicationContext.containsBean(beanName)) {
-      return applicationContext.getBean(beanName);
+      if (APPLICATION_CONTEXT.containsBean(beanName)) {
+          return APPLICATION_CONTEXT.getBean(beanName);
     }
     return null;
   }
@@ -40,10 +40,10 @@ public class ContextHelper {
    *     <p>//get Bean with type
    */
   public static <T> T getBean(String beanName) {
-    if (applicationContext.containsBean(beanName)) {
-      Class<T> beanType = (Class<T>) applicationContext.getType(beanName);
+      if (APPLICATION_CONTEXT.containsBean(beanName)) {
+          Class<T> beanType = (Class<T>) APPLICATION_CONTEXT.getType(beanName);
       if (Objects.nonNull(beanType)) {
-        return applicationContext.getBean(beanName, beanType);
+          return APPLICATION_CONTEXT.getBean(beanName, beanType);
       }
     }
     return null;
@@ -56,7 +56,7 @@ public class ContextHelper {
    *     <p>//get Bean
    */
   public static <T> T getBean(Class<T> beanType) {
-    return applicationContext.getBean(beanType);
+      return APPLICATION_CONTEXT.getBean(beanType);
   }
 
   /**

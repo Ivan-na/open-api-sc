@@ -16,6 +16,7 @@
     <module>support-commons</module>
     <module>support-web</module>
     <module>service-JWT</module>
+    <module>service-monolith</module>
   </modules>
 
   <!-- Spring Boot -->
